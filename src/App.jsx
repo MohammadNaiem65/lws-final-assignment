@@ -1,11 +1,17 @@
+import { Outlet, useLocation } from 'react-router-dom';
 import './App.css';
-import Quizzes from './pages/Admin/Quizzes/Quizzes';
+import { Navbar } from './shared';
 
 function App() {
+	// get path
+	const location = useLocation();
 	return (
-		<div>
-			<Quizzes />
-		</div>
+		<>
+			{location.pathname !== '/' &&
+				location.pathname !== '/register' &&
+				location.pathname !== '/admin' && <Navbar />}
+			<Outlet />
+		</>
 	);
 }
 
