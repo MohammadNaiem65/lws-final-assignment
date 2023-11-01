@@ -1,7 +1,7 @@
-import { portalLogo } from '../../assets';
-import LoginForm from './LoginForm/LoginForm';
+import { portalLogo } from '../../../assets';
+import LoginForm from './Form/Form';
 
-export default function StudentLogin() {
+export default function Login() {
 	return (
 		<div>
 			<section className='py-6 bg-primary h-screen grid place-items-center'>
