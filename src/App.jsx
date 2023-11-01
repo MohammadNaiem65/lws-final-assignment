@@ -1,10 +1,10 @@
+import LeaderBoard from './pages/Student/LeaderBoard/LeaderBoard';
 import './App.css';
-import Home from './pages/Student/Home/Home';
 
 function App() {
 	return (
 		<div>
-			<Home />
+			<LeaderBoard />
 		</div>
 	);
 }
