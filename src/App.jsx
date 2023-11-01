@@ -1,9 +1,10 @@
 import './App.css';
+import StudentLogin from './pages/StudentLogin/StudentLogin';
 
 function App() {
 	return (
-		<div className='w-full min-h-screen bg-slate-900 text-white'>
-			<h1>Redux is cooking</h1>
+		<div>
+			<StudentLogin />
 		</div>
 	);
 }
