@@ -1,10 +1,10 @@
 import './App.css';
-import Assignments from './pages/Admin/Assignments/Assignments';
+import AssignmentResult from './pages/Admin/AssignmentResult/AssignmentResult';
 
 function App() {
 	return (
 		<div>
-			<Assignments />
+			<AssignmentResult />
 		</div>
 	);
 }
