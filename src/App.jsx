@@ -1,10 +1,10 @@
 import './App.css';
-import Videos from './pages/Admin/Videos/Videos';
+import Assignments from './pages/Admin/Assignments/Assignments';
 
 function App() {
 	return (
 		<div>
-			<Videos />
+			<Assignments />
 		</div>
 	);
 }
