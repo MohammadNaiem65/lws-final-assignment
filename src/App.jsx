@@ -1,10 +1,10 @@
 import './App.css';
-import Quizs from './pages/Student/Quizs/Quizs';
+import Videos from './pages/Admin/Videos/Videos';
 
 function App() {
 	return (
 		<div>
-			<Quizs />
+			<Videos />
 		</div>
 	);
 }
