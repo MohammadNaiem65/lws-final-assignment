@@ -1,10 +1,10 @@
-import LeaderBoard from './pages/Student/LeaderBoard/LeaderBoard';
 import './App.css';
+import Quizs from './pages/Student/Quizs/Quizs';
 
 function App() {
 	return (
 		<div>
-			<LeaderBoard />
+			<Quizs />
 		</div>
 	);
 }
