@@ -48,6 +48,13 @@
       "role": "student",
       "name": "Arif",
       "id": 7
+    },
+    {
+      "email": "prac@tice.com",
+      "password": "$2a$10$pHX5aRBE./wPdU32S9K4rOam/ejn9mtF0YrI392cq5gnnL9b1n5nu",
+      "name": "Md Rifat Ahmed Tusar",
+      "role": "student",
+      "id": 8
     }
   ],
   "videos": [

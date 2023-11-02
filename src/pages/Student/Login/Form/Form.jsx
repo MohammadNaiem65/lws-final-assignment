@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useLoginMutation } from '../../../../features/auth/authApi';
+import { useLoginUserMutation } from '../../../../features/auth/authApi';
 
 export default function LoginForm() {
 	// hooks
-	const [login, { isSuccess, isError, error: processError }] =
-		useLoginMutation();
+	const [loginUser, { isSuccess, isError, error: processError }] =
+		useLoginUserMutation();
 	const navigate = useNavigate();
 
 	// local states
@@ -20,7 +20,7 @@ export default function LoginForm() {
 		e.preventDefault();
 		setError('');
 
-		login(userDetails);
+		loginUser(userDetails);
 	};
 
 	// handle process result
@@ -98,7 +98,7 @@ export default function LoginForm() {
 			</button>
 
 			{error && (
-				<p className='px-3 py-2 font-medium bg-red-500/40 text-red-600 rounded'>
+				<p className='px-3 py-2 font-medium bg-red-500/40 text-red-600 text-center rounded'>
 					{error}
 				</p>
 			)}
