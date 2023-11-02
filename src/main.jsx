@@ -9,10 +9,10 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
-		<RouterProvider router={routes}>
-			<Provider store={store}>
+		<Provider store={store}>
+			<RouterProvider router={routes}>
 				<App />
-			</Provider>
-		</RouterProvider>
+			</RouterProvider>
+		</Provider>
 	</React.StrictMode>
 );

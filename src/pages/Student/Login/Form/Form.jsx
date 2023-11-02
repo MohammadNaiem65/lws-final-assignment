@@ -1,6 +1,39 @@
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useLoginMutation } from '../../../../features/auth/authApi';
+
 export default function LoginForm() {
+	// hooks
+	const [login, { isSuccess, isError, error: processError }] =
+		useLoginMutation();
+	const navigate = useNavigate();
+
+	// local states
+	const [userDetails, setUserDetails] = useState({
+		email: '',
+		password: '',
+	});
+	const [error, setError] = useState('');
+
+	// handle process login
+	const handleLogin = (e) => {
+		e.preventDefault();
+		setError('');
+
+		login(userDetails);
+	};
+
+	// handle process result
+	useEffect(() => {
+		if (isSuccess) {
+			navigate('/home');
+		} else if (isError) {
+			setError(processError.data);
+		}
+	}, [navigate, isSuccess, isError, processError]);
+
 	return (
-		<form className='mt-8 space-y-6'>
+		<form className='mt-8 space-y-6' onSubmit={handleLogin}>
 			<div className='rounded-md shadow-sm -space-y-px'>
 				{/* Email */}
 				<div>
@@ -15,6 +48,13 @@ export default function LoginForm() {
 						required
 						className='login-input rounded-t-md'
 						placeholder='Email address'
+						value={userDetails.email}
+						onChange={(e) =>
+							setUserDetails((prev) => ({
+								...prev,
+								email: e.target.value,
+							}))
+						}
 					/>
 				</div>
 				{/* Password */}
@@ -30,27 +70,38 @@ export default function LoginForm() {
 						required
 						className='login-input rounded-b-md'
 						placeholder='Password'
+						value={userDetails.password}
+						onChange={(e) =>
+							setUserDetails((prev) => ({
+								...prev,
+								password: e.target.value,
+							}))
+						}
 					/>
 				</div>
 			</div>
 
 			<div className='flex items-center justify-end'>
 				<div className='text-sm'>
-					<a
-						href='./StudentReistration.html'
+					<Link
+						to='./register'
 						className='font-medium text-violet-600 hover:text-violet-500'>
 						Create New Account
-					</a>
+					</Link>
 				</div>
 			</div>
 
-			<div>
-				<button
-					type='submit'
-					className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500'>
-					Sign in
-				</button>
-			</div>
+			<button
+				type='submit'
+				className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500'>
+				Sign in
+			</button>
+
+			{error && (
+				<p className='px-3 py-2 font-medium bg-red-500/40 text-red-600 rounded'>
+					{error}
+				</p>
+			)}
 		</form>
 	);
 }
