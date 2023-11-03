@@ -6,8 +6,10 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Form() {
 	// hooks
-	const [loginAdmin, { isSuccess, isError, error: processError }] =
-		useLoginAdminMutation();
+	const [
+		loginAdmin,
+		{ data: loginResult, isSuccess, isError, error: processError },
+	] = useLoginAdminMutation();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -52,11 +54,13 @@ export default function Form() {
 	// handle login process result
 	useEffect(() => {
 		if (isSuccess) {
+			localStorage.setItem('auth', JSON.stringify(loginResult));
+			
 			navigate('/admin/home');
 		} else if (isError) {
 			setError(processError.data);
 		}
-	}, [navigate, isSuccess, isError, processError?.data]);
+	}, [navigate, loginResult, isSuccess, isError, processError?.data]);
 
 	return (
 		<form className='mt-8 space-y-6' onSubmit={handleLoginAdmin}>

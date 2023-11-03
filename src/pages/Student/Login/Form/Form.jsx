@@ -4,8 +4,10 @@ import { useLoginUserMutation } from '../../../../features/auth/authApi';
 
 export default function LoginForm() {
 	// hooks
-	const [loginUser, { isSuccess, isError, error: processError }] =
-		useLoginUserMutation();
+	const [
+		loginUser,
+		{ data: loginResult, isSuccess, isError, error: processError },
+	] = useLoginUserMutation();
 	const navigate = useNavigate();
 
 	// local states
@@ -26,11 +28,13 @@ export default function LoginForm() {
 	// handle process result
 	useEffect(() => {
 		if (isSuccess) {
+			localStorage.setItem('auth', JSON.stringify(loginResult));
+
 			navigate('/home');
 		} else if (isError) {
 			setError(processError.data);
 		}
-	}, [navigate, isSuccess, isError, processError]);
+	}, [navigate, loginResult, isSuccess, isError, processError]);
 
 	return (
 		<form className='mt-8 space-y-6' onSubmit={handleLogin}>
