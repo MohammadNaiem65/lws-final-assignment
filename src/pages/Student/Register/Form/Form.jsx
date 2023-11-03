@@ -106,7 +106,7 @@ export default function Form() {
 					<input
 						id='password'
 						name='password'
-						type='text'
+						type='password'
 						autoComplete='current-password'
 						required
 						className='login-input'
@@ -129,7 +129,7 @@ export default function Form() {
 					<input
 						id='confirm-password'
 						name='confirm-password'
-						type='text'
+						type='password'
 						autoComplete='confirm-password'
 						required
 						className='login-input rounded-b-md'
