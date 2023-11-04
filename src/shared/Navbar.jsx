@@ -17,7 +17,12 @@ export default function Navbar() {
 	return (
 		<nav className='shadow-md'>
 			<div className='max-w-7xl px-5 lg:px-0 mx-auto flex justify-between py-3'>
-				<img className='h-10' src={portalLogo} />
+				<Link
+					to={
+						auth?.user?.role === 'student' ? '/home' : '/admin/home'
+					}>
+					<img className='h-10' src={portalLogo} />
+				</Link>
 				<div className='flex items-center gap-3'>
 					<Link
 						to={
