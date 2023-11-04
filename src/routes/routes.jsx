@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
-import { Home, LeaderBoard, Login, Quiz, Register } from '../pages/Student';
+import { Home, LeaderBoard, Login, Register } from '../pages/Student';
 import {
 	AdminAssignmentResult,
 	AdminAssignments,
@@ -11,6 +11,8 @@ import {
 } from '../pages/Admin';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import Assignment from '../pages/Student/Assignment/Assignment';
+import Quizs from '../pages/Student/Quizs/Quizs';
 
 const routes = createBrowserRouter([
 	{
@@ -42,10 +44,34 @@ const routes = createBrowserRouter([
 				),
 			},
 			{
-				path: '/quiz',
+				path: '/home/:id',
 				element: (
 					<PrivateRoute>
-						<Quiz />
+						<Home />
+					</PrivateRoute>
+				),
+			},
+			{
+				path: '/video/:id',
+				element: (
+					<PrivateRoute>
+						<Home />
+					</PrivateRoute>
+				),
+			},
+			{
+				path: '/quiz/:id',
+				element: (
+					<PrivateRoute>
+						<Quizs />
+					</PrivateRoute>
+				),
+			},
+			{
+				path: '/assignment/:id',
+				element: (
+					<PrivateRoute>
+						<Assignment />
 					</PrivateRoute>
 				),
 			},

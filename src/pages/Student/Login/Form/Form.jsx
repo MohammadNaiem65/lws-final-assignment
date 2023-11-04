@@ -30,7 +30,7 @@ export default function LoginForm() {
 		if (isSuccess) {
 			localStorage.setItem('auth', JSON.stringify(loginResult));
 
-			navigate('/home');
+			navigate('/home/1');
 		} else if (isError) {
 			setError(processError.data);
 		}

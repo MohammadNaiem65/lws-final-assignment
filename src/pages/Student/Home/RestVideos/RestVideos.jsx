@@ -1,10 +1,15 @@
-import { useGetVideosQuery } from '../../../../features/videos/videosApi';
+import { useGetRelatedVideosQuery } from '../../../../features/videos/videosApi';
 import { Error, Loading, NoContent } from '../../../../shared';
 import Video from './Video/Video';
 
-export default function RestVideos() {
+export default function RestVideos({ currVid }) {
 	// hooks
-	const { data: videos, isLoading, isError, error } = useGetVideosQuery();
+	const {
+		data: videos,
+		isLoading,
+		isError,
+		error,
+	} = useGetRelatedVideosQuery(currVid);
 
 	// decide what to render
 	let content;
@@ -19,7 +24,11 @@ export default function RestVideos() {
 		content = (
 			<>
 				{videos?.map((video, index) => (
-					<Video key={index} video={video} />
+					<Video
+						key={index}
+						video={video}
+						active={video.id === currVid ? true : false}
+					/>
 				))}
 			</>
 		);
