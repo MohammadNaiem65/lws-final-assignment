@@ -9,3 +9,4 @@ const videosApi = apiSlice.injectEndpoints({
 });
 
 export default videosApi;
+export const { useGetVideosQuery } = videosApi;

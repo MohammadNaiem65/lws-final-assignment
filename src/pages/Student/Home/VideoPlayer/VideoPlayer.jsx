@@ -1,7 +1,9 @@
+import { Loading } from "../../../../shared";
+
 export default function VideoPlayer() {
 	return (
 		<div className='col-span-full w-full space-y-8 lg:col-span-2'>
-			<iframe
+			{/* <iframe
 				width='100%'
 				className='aspect-video'
 				src='https://www.youtube.com/embed/56zUkaXJnUA'
@@ -41,7 +43,9 @@ export default function VideoPlayer() {
 					ভিডিওটি দেখলে আপনাদের এই সমস্যাগুলো নিয়ে আর কনফিউশন
 					থাকবেনা।
 				</p>
-			</div>
+			</div> */}
+
+			<Loading/>
 		</div>
 	);
 }
