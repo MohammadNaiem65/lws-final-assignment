@@ -4,17 +4,27 @@ export default function Video({ video, active }) {
 	// local state
 	const { id, title, views, duration } = video;
 
-	// turn duration to minute.second format
+	// turn duration into desired format
 	const createValidDuration = () => {
 		const durationArr = duration.split(':');
-		const minutes = durationArr[1].split('');
-		const seconds = Number(minutes[1]) !== 0 ? Number(minutes[1]) : '';
 
-		return `${durationArr[0]}.${minutes[0]}${seconds}`;
+		// if the max duration is lesser than a minute
+		if (durationArr.length === 1) {
+			return `0.${durationArr[0]} Mins`;
+		} else if (durationArr.length > 1) {
+			// if the max duration is more than a minute
+			const minutes = durationArr[1].split('');
+			const seconds = Number(minutes[1]) !== 0 ? Number(minutes[1]) : '';
+
+			return `${durationArr[0]}.${minutes[0]}${seconds} ${
+				durationArr.length === 3 ? 'Hours' : 'Mins'
+			}`;
+		}
 	};
 
 	return (
-		<div
+		<Link
+			to={`/video/${id}`}
 			className={`w-full flex flex-row gap-2 cursor-pointer hover:bg-slate-900 ${
 				active ? 'p-2' : 'py-3'
 			}`}>
@@ -38,17 +48,15 @@ export default function Video({ video, active }) {
 			</svg>
 			{/* <!-- Description --> */}
 			<div className='w-full flex flex-col '>
-				<Link to={`/video/${id}`}>
-					<p
-						className={`text-slate-50 text-sm ${
-							active ? 'font-semibold' : 'font-normal'
-						}`}>
-						{title}
-					</p>
-				</Link>
+				<p
+					className={`text-slate-50 text-sm ${
+						active ? 'font-semibold' : 'font-normal'
+					}`}>
+					{title}
+				</p>
 				<div>
 					<span className='text-gray-400 text-xs mt-1'>
-						{createValidDuration()} Mins
+						{createValidDuration()}
 					</span>
 					<span className='text-gray-400 text-xs mt-1'> | </span>
 					<span className='text-gray-400 text-xs mt-1'>
@@ -56,6 +64,6 @@ export default function Video({ video, active }) {
 					</span>
 				</div>
 			</div>
-		</div>
+		</Link>
 	);
 }
