@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { logout } from '../features/auth/authSlice';
 import { portalLogo } from '../assets';
 
 export default function Navbar() {
-	// hooks
-	const { role } = useSelector((state) => state.auth.user);
+	const auth = JSON.parse(localStorage.getItem('auth'));
 	const dispatch = useDispatch();
 
 	// handle logout process
@@ -22,12 +21,16 @@ export default function Navbar() {
 				<div className='flex items-center gap-3'>
 					<Link
 						to={
-							role === 'student' ? '/leader-board' : '/admin/home'
+							auth?.user?.role === 'student'
+								? '/leader-board'
+								: '/admin/home'
 						}
 						className='font-bold'>
-						{role === 'student' ? 'Leader-Board' : 'Dashboard'}
+						{auth?.user?.role === 'student'
+							? 'Leader-Board'
+							: 'Dashboard'}
 					</Link>
-					<h2 className='font-bold capitalize'>{role}</h2>
+					<h2 className='font-bold capitalize'>{auth?.user?.role}</h2>
 					<button
 						className='flex gap-2 border border-cyan items-center px-4 py-1 rounded-full text-sm transition-all hover:bg-cyan '
 						onClick={handleLogout}>

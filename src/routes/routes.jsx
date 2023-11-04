@@ -9,6 +9,8 @@ import {
 	AdminQuizzes,
 	AdminVideos,
 } from '../pages/Admin';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 const routes = createBrowserRouter([
 	{
@@ -17,47 +19,91 @@ const routes = createBrowserRouter([
 		children: [
 			{
 				path: '/',
-				element: <Login />,
+				element: (
+					<PublicRoute>
+						<Login />
+					</PublicRoute>
+				),
 			},
 			{
 				path: '/register',
-				element: <Register />,
+				element: (
+					<PublicRoute>
+						<Register />
+					</PublicRoute>
+				),
 			},
 			{
 				path: '/home',
-				element: <Home />,
+				element: (
+					<PrivateRoute>
+						<Home />
+					</PrivateRoute>
+				),
 			},
 			{
 				path: '/quiz',
-				element: <Quiz />,
+				element: (
+					<PrivateRoute>
+						<Quiz />
+					</PrivateRoute>
+				),
 			},
 			{
 				path: '/leader-board',
-				element: <LeaderBoard />,
+				element: (
+					<PrivateRoute>
+						<LeaderBoard />
+					</PrivateRoute>
+				),
 			},
 			{
 				path: '/admin',
-				element: <AdminLogin />,
+				element: (
+					<PublicRoute>
+						<AdminLogin />
+					</PublicRoute>
+				),
 			},
 			{
 				path: '/admin/home',
-				element: <AdminHome />,
+				element: (
+					<PrivateRoute>
+						<AdminHome />
+					</PrivateRoute>
+				),
 			},
 			{
 				path: '/admin/videos',
-				element: <AdminVideos />,
+				element: (
+					<PrivateRoute>
+						<AdminVideos />
+					</PrivateRoute>
+				),
 			},
 			{
 				path: '/admin/assignments',
-				element: <AdminAssignments />,
+				element: (
+					<PrivateRoute>
+						<AdminAssignments />
+					</PrivateRoute>
+				),
 			},
 			{
 				path: '/admin/assignment-result',
-				element: <AdminAssignmentResult />,
+				element: (
+					<PrivateRoute>
+						<AdminAssignmentResult />
+					</PrivateRoute>
+				),
 			},
 			{
 				path: '/admin/quiz',
-				element: <AdminQuizzes />,
+				element: (
+					<PrivateRoute>
+						<AdminQuizzes />
+					</PrivateRoute>
+				),
 			},
 		],
 	},
